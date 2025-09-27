@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Carta Fragmentada de Yharnam</title>
+<style>
+  body {
+    background: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/7e98ffb5-bdc2-4b81-bdf0-1a4a940d821d/dkc4ghz-d3309466-f292-4c06-96a6-90a5e7692266.jpg/v1/fit/w_750,h_750,q_70,strp/3387_by_dangaibeam_dkc4ghz-375w-2x.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9ODAwIiwicGF0aCI6Ii9mLzdlOThmZmI1LWJkYzItNGI4MS1iZGYwLTFhNGE5NDBkODIxZC9ka2M0Z2h6LWQzMzA5NDY2LWYyOTItNGMwNi05NmE2LTkwYTVlNzY5MjI2Ni5qcGciLCJ3aWR0aCI6Ijw9ODAwIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.VbKN1vBFjQgkKcaFmIGbPsz_gKf5CBs8LjZ8o9JUsUU') no-repeat center center fixed;
+    background-size: cover;
+    font-family: "Garamond", "Georgia", serif;
+    color: #ffffff;
+    text-align: center;
+    padding: 30px;
+  }
+
+  h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #ffffff;
+    text-shadow: 0 0 5px #000000;
+  }
+
+  .card {
+    background: rgba(0,0,0,0.85);
+    border: 2px solid #222222;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 800px;
+  }
+
+  input {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #555555;
+    margin-top: 10px;
+    width: 80%;
+    font-size: 1em;
+  }
+
+  button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 6px;
+    background: #222222;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  button:hover {
+    background: #444444;
+  }
+
+  .fragment {
+    margin-top: 20px;
+    padding: 15px;
+    font-size: 1.1em;
+    line-height: 1.6;
+    border-left: 4px solid #555555;
+    text-align: left;
+    white-space: pre-line;
+    max-height: none;
+    overflow-y: auto;
+  }
+
+  h2 {
+    color: #ffffff;
+    margin-bottom: 10px;
+  }
+</style>
+</head>
+<body>
+
+<h1>🌙 Carta Fragmentada de Yharnam</h1>
+
+<div id="game" class="card">
+  <h2 id="riddleTitle">Acertijo</h2>
+  <p id="riddle"></p>
+  <input type="text" id="answer" placeholder="Escribe tu respuesta...">
+  <br>
+  <button onclick="checkAnswer()">Responder</button>
+  <p id="feedback"></p>
+</div>
+
+<div id="fragments"></div>
+
+<script>
+const riddles = [
+  {q: "En la penumbra, cuando las calles de Yharnam devoran la cordura, solo un tenue fulgor permanece. ¿Qué luz guía tu regreso?", a: "farol"},
+  {q: "Los cazadores luchan hasta caer, pero algo regresa siempre con ellos. ¿Qué fluye como sangre en Yharnam?", a: "ecos de sangre"},
+  {q: "Bestias deformes merodean en la noche. ¿Qué herramienta porta todo cazador en su diestra?", a: "trick weapon"},
+  {q: "Los susurros de la luna guían al cazador. ¿Qué presencia antigua observa desde lo alto?", a: "la gran presencia"},
+  {q: "En la capilla olvidada, un guardián te espera. ¿Quién protege el sueño del cazador?", a: "gehrman"},
+  {q: "Cuando el amanecer llega y la cacería termina… ¿qué palabra describe la liberación final?", a: "despertar"}
+];
+
+const fragments = [
+`Te he amado durante años. Cuanto más lo pienso, menos sentido tiene, y antes de que te sientas triste, no es porque no lo valgas; simplemente, te alojaste tan rápidamente en mi alma que me perdí del momento exacto en que comenzaste a convivir conmigo, debajo de mi piel.
+
+Te adueñaste de mis noches de insomnio y de la mayoría de mis creencias. Seguramente te preguntas: “¿Qué demonios? ¿A qué te refieres?” Bueno, siéntate. Déjame explicarte cómo funcionaba el amor para mí antes de ti.
+
+Verás, soy un chico que creció con la idea del amor como efecto secundario de buenas acciones. Sé que suena terrible, pero para mi mente de aquel entonces era normal: ¿Deseabas amor? Bien, entonces debías acatar órdenes y aceptar restricciones. Y estuvo bien así durante mucho tiempo, donde di un amor pasivo, tibio, condicionado. Un amor que no era amor, y un cariño que no era sincero.`,
+`Pero entonces, después de vagar mucho tiempo, insatisfecho en lo más profundo de mi alma, me encontré preguntándome qué sentido tenía el amor. Y yo sé que te conociste amando, amando a una persona egoísta, casi tanto como yo.
+
+Pero, si me lo preguntas ahora, no creo haber sido 100% honesto aquella vez. No hasta que te conocí.
+
+Vaya, me deslumbraste. Nada tiene que ver con el primer rechazo (que, Dios, me encadenó), sino más bien con la certeza de verte diferente. Eras completamente atípico en toda tu normalidad. No eras extravagante, pero eras cálido, y sobre todo, me supiste a honestidad. Caí rendido cuando me descubrí anhelando probar más.
+
+Entonces, los minutos a tu lado se volvieron horas, las horas días, y los días semanas completas. Te descubrí humano, hermosamente herido, virtuoso y lleno de un amor pasional. Te vi a través de mi egoísmo y, por primera vez, entendí que no quería amar con condiciones… pero fue fácil para mí arruinarnos.`,
+`Caí. ¿Lo recuerdas? La primera vez que nuestras almas se sintieron, cuando choqué con el calor de tu universo, cuando me tocaste y dejaste tu marca de fuego, me fui. Te fallé, y mi pecado me persiguió durante los años siguientes.
+
+Entre la neblina de verte con alguien más, intentando calentar el frío de mi corazón con pequeñas chispas de amor, tuve una revelación: estaba amándote mal. Yo, que te dejé ir, todavía tenía algo que ofrecer. Y entonces evolucionó mi manera de querer.
+
+Por primera vez en mi vida cuestioné aquel amor con el que crecí. Me pregunté si sería capaz de amarte de forma completa y desinteresada… y al principio fue jodido. Me sentí egoísta, mordí mis labios, conocí los celos y la frustración de no poder controlar nada.`,
+`Era tu enorme capacidad de brillar lo que me atraía, como a una polilla la luz. Y entonces tuve una segunda revelación: incluso cuando un chico volvió a maltratar tu corazón, siempre supe que tú serías la excepción.
+
+Mi excepción a la regla. El único capaz de atravesar mi corazón cerrado. No quería amar más, pero, para mi mala suerte, tu sonrisa volvió a encandilarme, y no tuve forma de resistirme.
+
+Y así comprendí algo esencial: amarte no tiene que ver con posesión ni con control. No necesito tu amor para existir, ni espero que cambies nada por mí. Amar para mí significa estar presente, en la calma y en la tormenta, sostener sin imponer, admirar sin encadenar.
+
+Te elegí mil veces en silencio, en los días que no hablábamos, en los que miraba tu risa desde lejos y deseaba tu bienestar más que cualquier cosa. Te elegí incluso cuando tuve miedo, cuando el orgullo y la razón me pedían alejarme. Porque amarte así es la única forma que conozco de amar de verdad.`,
+`No hay cadenas ni condiciones. Solo hay reconocimiento de lo que sos: un alma que brilla, que enseña, que desafía y que da calor incluso sin proponérselo. Y en esa luz, en esa esencia que es solo tuya, encontré mi hogar.
+
+Amarte me enseñó a ser honesto conmigo mismo, a reconocer mis celos, mis miedos, mis errores… y aun así, decidir quedarme. Porque el amor más verdadero no es perfecto ni cómodo; es valiente, consciente y libre. Y eso, Eddie, es lo que siempre quise ofrecerte.
+
+Y así, aquí estoy, todavía eligiéndote, sin esperar nada a cambio, solo deseando que sigas siendo tú, pleno y libre. Que la vida te permita reír con la misma intensidad que brillas, y que encuentres calma incluso en tus días más oscuros.`,
+`Te amo de la manera que aprendí a amar: sin cadenas, sin condiciones, con respeto y presencia. Siempre volveré a vos, Ed, porque aunque todo cambie a nuestro alrededor, tu luz sigue siendo mi norte, y tu esencia, mi hogar eterno.
+
+No hay promesas grandiosas ni finales predichos. Solo hay esta verdad simple y feroz: amarte me hizo mejor, y te amaré, en cualquier forma que el mundo permita, mientras me quede aire en el pecho y fuego en el corazón.
+
+Feliz cumpleaños, pequitas de amor. Gracias por nacer, por brillar con tu propia luz y por enseñarme, cada día, lo que significa amar sin condiciones. Permíteme permanecer a tu lado por toda la eternidad, ascender siendo uno como siempre debió ser. Déjame ser tu pilar, tu compañero y tu calma.
+
+Te ama con intensa locura, Eider.`
+];
+
+let current = 0;
+
+function loadRiddle() {
+  if(current < riddles.length){
+    document.getElementById("riddle").innerText = riddles[current].q;
+  } else {
+    document.getElementById("game").innerHTML = "<h2>🌹 Has completado todos los fragmentos 🌹</h2>";
+  }
+  document.getElementById("answer").value = "";
+  document.getElementById("feedback").innerText = "";
+}
+
+function checkAnswer(){
+  let ans = document.getElementById("answer").value.trim().toLowerCase();
+  if(ans === riddles[current].a.toLowerCase()){
+    document.getElementById("feedback").innerText = "✔ Correcto, has desbloqueado un fragmento.";
+    showFragment(current);
+    current++;
+    setTimeout(loadRiddle, 1500);
+  } else {
+    document.getElementById("feedback").innerText = "✘ Respuesta incorrecta, intenta otra vez.";
+  }
+}
+
+function showFragment(i){
+  let div = document.createElement("div");
+  div.className = "fragment card";
+  div.innerText = fragments[i];
+  document.getElementById("fragments").appendChild(div);
+}
+
+loadRiddle();
+</script>
+
+</body>
+</html>
